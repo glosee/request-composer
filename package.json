@@ -1,7 +1,7 @@
 {
 	"name": "request-composer",
 	"version": "0.0.0",
-	"description": "A small utility library to create http requests using object and function composition",
+	"description": "A small utility library to create http requests with object and function composition",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.esm.js",
 	"scripts": {
@@ -14,7 +14,10 @@
 			"pre-commit": "pretty-quick --staged"
 		}
 	},
-	"author": "Graham Losee <grahamlosee@gmail.com>",
+	"author": {
+		"name": "Graham Losee",
+		"email": "grahamlosee@gmail.com"
+	},
 	"license": "ISC",
 	"devDependencies": {
 		"@babel/core": "^7.7.7",
