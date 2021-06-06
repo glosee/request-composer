@@ -28,31 +28,33 @@ NOW - All that aside, here are some examples of what you can do with this librar
 ```javascript
 import { compose, withKey } from 'request-composer';
 
+const BASE_URL = 'https://my-api.com/';
+const baseUrlWithPath = path => `${BASE_URL}${PATH}`;
+
 // Make a common request object
 const withUrl = withKey('url');
 const withHeaders = withKey('headers');
-const withPath = withKey('path');
 const withBody = withKey('body');
 const withMethod = withKey('method');
 
-const commonRequest = compose(
-  withUrl('https://my-api.com/'),
-  withHeaders({ 'Authorization': `Bearer ${myToken}` }),
+const commonHeaders = compose(
+  withHeaders({ 'Authorization': `Bearer ${myTokenFromSomewhere}` }),
+  withHeaders({ 'Content-Type': 'application/json' })
 );
 
 // Further that by adding more common params
-const postRequest = compose(commonRequest, withMethod('POST'));
-const getRequest = compose(commonRequest, withMethod('GET'));
+const postRequest = compose(commonHeaders, withMethod('POST'));
+const getRequest = compose(commonHeaders, withMethod('GET'));
 
 // Make more specific calls
-const createCustomer = data => compose(postRequest, withPath('/v1/customer'), withBody(data));
-const getCustomer = customerId => compose(getRequest, withPath(`/v1/customer/${customerId}`);
+const createCustomer = data => compose(postRequest, withUrl(baseUrlWithPath('/v1/customer')), withBody(data));
+const getCustomer = customerId => compose(getRequest, withUrl(baseUrlWithPath(`/v1/customer/${customerId}`));
 
 // Use with fetch!
-fetch(getCustomer(decodedIdToken.customerId))
+fetch(getCustomer(myTokenFromSomewhere.customerId))
   .then(response => {
     if (!response.ok) {
-      throw new Error(`Error getting customer at ${decodedIdToken.customerId}`);
+      throw new Error(`Error getting customer at ${myTokenFromSomewhere.customerId}`);
     }
     return response.json();
   })
