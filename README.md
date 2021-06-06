@@ -15,7 +15,7 @@ There are some messy parts of the code and the package in general. Specifically 
 - the file [./src/utils/fetch-utils.js](./src/utils/fetch-utils.js) is messy and entirely untested -- that's not great...
 - there is a bug that I have not done RCA on yet in [./src/utils/wrap-promise.js](./src/utils/wrap-promise.js) -- there is a comment at the top of this file outlining the issue
 - the overall scope of the library is unclear... what started out as a clear solution to a particular problem has morphed into a loose collection of utils istead. I need to consider what I want to keep here, and what I want to separate.
-  - That said: I have moved the utility `with-key` out into its own package, which I've started to manage here: [glosee/with-key](https://github.com/glosee/with-key)
+  - That said: I have moved the utility `with-key` out into its own package, which I've started to manage here: [grahaml/with-key](https://github.com/grahaml/with-key)
 
 Despite these clear pitfalls, I have posted this here for my own amusement, and so I can continue to refine it as time goes on. The intention is morese to perfect the developer experience, rather than to create a package that gets 1M downloads a day.
 
